@@ -1,0 +1,39 @@
+<script type='text/javascript'>
+  //<![CDATA[
+  /* 
+   * Upper Size
+   * @https://bit.ly/2yqjAxs
+   */
+   jQuery(function() {
+    var fontSize = parseInt(jQuery(" .post-body ").css("font-size") );
+	jQuery("#up").click(function() {
+    	var fontSize = parseInt( jQuery(" .post-body ").css("font-size") );
+		fontSize = fontSize +1 + "px";
+		jQuery('.post-body').css({'font-size':fontSize});
+	 	Cookies.set('upsize', fontSize);
+		Cookies.remove('downsize');
+	});
+	jQuery("#down").click(function() {		
+    	var fontSize = parseInt( jQuery(" .post-body ").css("font-size") );
+		fontSize = fontSize -1 + "px";
+		jQuery('.post-body').css({'font-size':fontSize});
+	 	Cookies.set('downsize', fontSize);
+		Cookies.remove('upsize');
+	});
+	jQuery("#reset").click(function() {
+		Cookies.remove('upsize');
+		Cookies.remove('downsize');
+		Cookies.remove('darkmode');
+		jQuery('.post-body').css({'font-size':'16px'});
+     	jQuery("body").removeClass("dark");
+	});
+	jQuery(".btn-dark").click(function() {
+     jQuery("body").toggleClass("dark");
+	 Cookies.set('darkmode', 'yes');
+	});
+    if (parseInt(Cookies.get('upsize')) > fontSize){jQuery('.post-body').css({'font-size':Cookies.get('upsize')})};
+    if (parseInt(Cookies.get('downsize')) > fontSize){jQuery('.post-body').css({'font-size':Cookies.get('downsize')})};
+    if (Cookies.set('darkmode') == 'yes'){jQuery("body").addClass("dark")};
+  });
+  //]]>
+  </script>
